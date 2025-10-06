@@ -35,6 +35,7 @@ body, text_input{
     margin-bottom: 1rem;
     margin-right: calc(1rem + 2px);
     margin-left: calc(1rem + 2px);
+    font-size: 1.5rem;
 }
 
 .text_input{
@@ -47,9 +48,17 @@ body, text_input{
     resize: none;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .text_input:focus {
     border-color: black;
+}
+
+.correct{
+    color: green;
+}
+.incorrect{
+    color: red;
+    text-decoration: underline;
 }
