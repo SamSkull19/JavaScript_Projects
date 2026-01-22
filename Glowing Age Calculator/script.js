@@ -75,3 +75,30 @@ function animate() {
 init();
 animate();
 
+
+const checkboxInput = document.getElementById('checkbox');
+checkboxInput.addEventListener('click', toggleTheme);
+
+
+function toggleTheme() {
+    document.body.classList.toggle("dark_theme");
+
+    const isDark = document.body.classList.contains("dark_theme");
+
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+
+window.onload = () => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if(savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        document.getElementById("checkbox").checked = true;
+    }
+};
+
+
+
+
+
