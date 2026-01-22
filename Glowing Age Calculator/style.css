@@ -135,7 +135,7 @@ body.dark_theme .calculator_box {
 input {
     padding: 15px 20px;
     border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.5);
     font-size: 1.2rem;
     font-weight: 600;
@@ -154,7 +154,7 @@ button {
     padding: 15px;
     border-radius: 16px;
     border: none;
-    background: #4a90e2;
+    background: #062142;
     color: white;
     font-weight: 700;
     cursor: pointer;
@@ -163,6 +163,73 @@ button {
 }
 
 button:hover {
-    background: #286aac;
+    background: #1c3f62;
     transform: scale(1.03);
+}
+
+
+#result {
+    margin-top: 25px;
+    font-weight: 600;
+    line-height: 0.8;
+}
+
+
+.ripple_btn {
+    position: relative;
+    overflow: hidden;
+    padding: 15px;
+    border-radius: 16px;
+    padding: 15px;
+    border: none;
+    background: #031b38;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+
+.ripple_btn:active {
+    transform: scale(0.98);
+}
+
+
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: ripple_animation 0.6s linear;
+}
+
+
+@keyframes ripple_animation {
+    from {
+        width: 0px;
+        height: 0px;
+        opacity: 0.5;
+    }
+
+    to {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+}
+
+
+.result-highlight {
+    color: #4a90e2;
+    font-size: 1.8rem;
+    font-weight: 800;
+    display: block;
+    margin: 10px 0;
+}
+
+
+body.dark-theme .result-highlight {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
