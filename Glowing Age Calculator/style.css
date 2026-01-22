@@ -181,9 +181,8 @@ body.dark_theme button:hover {
 
 
 #result {
-    margin-top: 25px;
+    margin-top: 30px;
     font-weight: 600;
-    line-height: 0.8;
 }
 
 
@@ -231,16 +230,18 @@ body.dark_theme button:hover {
     }
 }
 
+
 .result_show {
     margin-top: 50px;
     width: 100%;
     background-color: #001938;
-    padding: 40px 0;
+    padding: 30px 20px;
     border-radius: 20px;
     color: #c8e7ef;
     font-size: 1.3rem;
     font-weight: 600;
 }
+
 
 body.dark_theme .result_show {
     color: #001938;
@@ -253,7 +254,6 @@ body.dark_theme .result_show {
     font-size: 1.8rem;
     font-weight: 800;
     display: block;
-    padding: 10px 0;
 }
 
 
@@ -266,6 +266,7 @@ body.dark_theme .result-highlight {
 .animate_result {
     animation: fadeUp 0.6s ease forwards;
 }
+
 
 @keyframes fadeUp {
     from {

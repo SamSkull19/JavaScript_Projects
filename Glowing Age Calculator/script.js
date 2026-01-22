@@ -129,7 +129,14 @@ function calculateAge(e) {
     }
 
     const birthDate = new Date(birthDateValue);
-    const today = new Date();
+    const currentDateValue = document.getElementById("currentDateInput").value;
+    const today = currentDateValue ? new Date(currentDateValue) : new Date();
+
+    if (today < birthDate) {
+        result.innerHTML = "Current date must be after birth date!";
+        result.classList.add('result_show');
+        return;
+    }
 
 
     let year = today.getFullYear() - birthDate.getFullYear();
@@ -150,13 +157,21 @@ function calculateAge(e) {
     void result.offsetWidth;
     result.classList.add('animate_result', 'result_show');
 
-    result.innerHTML = `You are <br><span class="result-highlight">${year}y ${month}m ${day}d</span><br> old`;
+    result.innerHTML = `You are <br><span class="result-highlight">${year}y ${month}m ${day}d</span> old`;
 }
 
 
 flatpickr("#dateInput", {
     dateFormat: "Y-m-d",
     maxDate: "today",
+    animate: true,
+    allowInput: true
+});
+
+flatpickr("#currentDateInput", {
+    dateFormat: "Y-m-d",
+    maxDate: "today",
+    defaultDate: "today",
     animate: true,
     allowInput: true
 });
