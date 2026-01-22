@@ -98,3 +98,71 @@ body.dark-theme .theme_slider {
     font-size: 30px;
     user-select: none;
 }
+
+
+.calculator_box {
+    width: 400px;
+    padding: 40px;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(72, 72, 72, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.calculator_box {
+    background: #d9f5fb;
+    color: #333;
+}
+
+
+body.dark_theme .calculator_box {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.input_box {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+input {
+    padding: 15px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    font-weight: 600;
+    outline: none;
+}
+
+
+body.dark-theme input {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+button {
+    padding: 15px;
+    border-radius: 16px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.2rem;
+}
+
+button:hover {
+    background: #286aac;
+    transform: scale(1.03);
+}
