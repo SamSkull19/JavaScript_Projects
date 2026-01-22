@@ -93,14 +93,14 @@ window.onload = () => {
     const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme === "dark") {
-        document.body.classList.add("dark-theme");
+        document.body.classList.add("dark_theme");
         document.getElementById("checkbox").checked = true;
     }
 };
 
 
-const calculateBTN = document.querySelector('ripple_btn');
-checkboxInput.addEventListener('click', calculateAge);
+const calculateBTN = document.querySelector('.ripple_btn');
+calculateBTN.addEventListener('click', calculateAge);
 
 
 function calculateAge(e) {
@@ -146,12 +146,17 @@ function calculateAge(e) {
         month += 12;
     }
 
-    result.classList.remove('animate_result');
+    result.classList.remove('animate_result', 'result_show');
     void result.offsetWidth;
-    result.classList.add('animate_result');
+    result.classList.add('animate_result', 'result_show');
 
     result.innerHTML = `You are <br><span class="result-highlight">${year}y ${month}m ${day}d</span><br> old`;
 }
 
 
-
+flatpickr("#dateInput", {
+    dateFormat: "Y-m-d",
+    maxDate: "today",
+    animate: true,
+    allowInput: true
+});

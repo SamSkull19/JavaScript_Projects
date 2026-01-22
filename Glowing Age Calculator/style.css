@@ -231,13 +231,29 @@ body.dark_theme button:hover {
     }
 }
 
+.result_show {
+    margin-top: 50px;
+    width: 100%;
+    background-color: #001938;
+    padding: 40px 0;
+    border-radius: 20px;
+    color: #c8e7ef;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+body.dark_theme .result_show {
+    color: #001938;
+    background-color: #0b448b;
+}
+
 
 .result-highlight {
-    color: #4a90e2;
+    color: #dbe8f6;
     font-size: 1.8rem;
     font-weight: 800;
     display: block;
-    margin: 10px 0;
+    padding: 10px 0;
 }
 
 
