@@ -96,10 +96,35 @@ window.onload = () => {
         document.body.classList.add("dark_theme");
         document.getElementById("checkbox").checked = true;
     }
+
+    loadHistoryFromStorage();
 };
 
 
 let calculationHistory = [];
+
+
+function loadHistoryFromStorage() {
+    const savedHistory = localStorage.getItem("calculationHistory");
+
+    if (savedHistory) {
+        try {
+            calculationHistory = JSON.parse(savedHistory);
+        }
+        catch (e) {
+            console.error("Error loading history:", e);
+            calculationHistory = [];
+        }
+    }
+
+    updateHistoryDisplay();
+}
+
+
+function saveHistoryToStorage() {
+    localStorage.setItem("calculationHistory", JSON.stringify(calculationHistory));
+}
+
 
 function saveToHistory(birthDate, currentDate, result) {
     const historyItem = {
@@ -115,6 +140,7 @@ function saveToHistory(birthDate, currentDate, result) {
         calculationHistory = calculationHistory.slice(0, 5);
     }
 
+    saveHistoryToStorage();
     updateHistoryDisplay();
 }
 
@@ -147,6 +173,7 @@ function updateHistoryDisplay() {
     historyList.innerHTML = historyHTML;
 }
 
+
 function loadHistoryItem(index) {
     const item = calculationHistory[index];
     document.getElementById('dateInput').value = item.birthDate;
@@ -157,13 +184,19 @@ function loadHistoryItem(index) {
     result.classList.add('result_show');
 }
 
+
 function clearHistory() {
     calculationHistory = [];
+
+    saveHistoryToStorage();
     updateHistoryDisplay();
 }
 
+
 function deleteHistoryItem(index) {
     calculationHistory.splice(index, 1);
+
+    saveHistoryToStorage();
     updateHistoryDisplay();
 }
 
@@ -171,6 +204,7 @@ function deleteHistoryItem(index) {
 const historyHeader = document.getElementById('historyHeader');
 const historyList = document.getElementById('historyList');
 const historyArrow = historyHeader.querySelector('.history_arrow');
+
 
 historyHeader.addEventListener('click', () => {
     historyList.classList.toggle('show');
@@ -257,6 +291,3 @@ flatpickr("#currentDateInput", {
     animate: true,
     allowInput: true
 });
-
-
-updateHistoryDisplay();
