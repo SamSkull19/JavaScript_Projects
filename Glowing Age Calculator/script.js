@@ -99,6 +99,85 @@ window.onload = () => {
 };
 
 
+let calculationHistory = [];
+
+function saveToHistory(birthDate, currentDate, result) {
+    const historyItem = {
+        birthDate: birthDate,
+        currentDate: currentDate,
+        result: result,
+        timestamp: new Date().toISOString()
+    };
+
+    calculationHistory.unshift(historyItem);
+
+    if (calculationHistory.length > 5) {
+        calculationHistory = calculationHistory.slice(0, 5);
+    }
+
+    updateHistoryDisplay();
+}
+
+
+function updateHistoryDisplay() {
+    const historyList = document.getElementById('historyList');
+
+    if (calculationHistory.length === 0) {
+        historyList.innerHTML = `<div class="no_history">No calculations yet</div>`;
+        return;
+    }
+
+    let historyHTML = '';
+
+    calculationHistory.forEach((item, idx) => {
+        historyHTML += `
+            <div class="history_item">
+                <div class="history_content" onclick="loadHistoryItem(${idx})">
+                    <div class="history_date">🎂 ${item.birthDate} → 📅 ${item.currentDate}</div>
+
+                    <div class="history_result">${item.result}</div>
+                </div>
+
+                <button class="delete_btn" onclick="deleteHistoryItem(${idx})" title="Delete">🗑️</button>
+            </div>
+        `;
+    });
+
+    historyHTML += '<button class="clear_history_btn" onclick="clearHistory()">Clear History</button>';
+    historyList.innerHTML = historyHTML;
+}
+
+function loadHistoryItem(index) {
+    const item = calculationHistory[index];
+    document.getElementById('dateInput').value = item.birthDate;
+    document.getElementById('currentDateInput').value = item.currentDate;
+
+    const result = document.getElementById('result');
+    result.innerHTML = `You are <br><span class="result-highlight">${item.result}</span> old`;
+    result.classList.add('result_show');
+}
+
+function clearHistory() {
+    calculationHistory = [];
+    updateHistoryDisplay();
+}
+
+function deleteHistoryItem(index) {
+    calculationHistory.splice(index, 1);
+    updateHistoryDisplay();
+}
+
+
+const historyHeader = document.getElementById('historyHeader');
+const historyList = document.getElementById('historyList');
+const historyArrow = historyHeader.querySelector('.history_arrow');
+
+historyHeader.addEventListener('click', () => {
+    historyList.classList.toggle('show');
+    historyArrow.classList.toggle('expanded');
+});
+
+
 const calculateBTN = document.querySelector('.ripple_btn');
 calculateBTN.addEventListener('click', calculateAge);
 
@@ -157,7 +236,10 @@ function calculateAge(e) {
     void result.offsetWidth;
     result.classList.add('animate_result', 'result_show');
 
-    result.innerHTML = `You are <br><span class="result-highlight">${year}y ${month}m ${day}d</span> old`;
+    const resultText = `${year}y ${month}m ${day}d`;
+    result.innerHTML = `You are <br><span class="result-highlight">${resultText}</span> old`;
+
+    saveToHistory(birthDateValue, currentDateValue || new Date().toISOString().split('T')[0], resultText);
 }
 
 
@@ -175,3 +257,6 @@ flatpickr("#currentDateInput", {
     animate: true,
     allowInput: true
 });
+
+
+updateHistoryDisplay();
